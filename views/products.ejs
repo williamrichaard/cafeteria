@@ -1,0 +1,24 @@
+<% include ./partials/header.ejs %>
+<div class="container mt-5">
+    <h4>Our Menu</h4>
+    <p>We can make a commitment to promote vegetables and fruits and whole grains on every part of every menu.</p>
+    <hr>
+    <div class="d-flex mb-3 justify-content-between flex-wrap">
+        <% products.forEach(function(prdct){ %>
+            <div class="card mt-3" style="width: 18rem;">
+                    <img src=<%= prdct.picture %>
+                        class="card-img-top" alt=<%= prdct.name %>>
+                    <div class="card-body">
+                        <h5 class="card-title"><%= prdct.name %></h5>
+                        <small class="card-text"><%= prdct.taste %></small>
+                        <br>
+                        <br>
+                        <h5 class="text text-success">Rs <%= prdct.price %></h5>
+                        <br>
+                        <a href=<%= '/add/'+prdct.id %> class="btn btn-success">Add To Cart</a>
+                    </div>
+                </div>
+        <% }) %>
+    </div>
+</div>
+<% include ./partials/footer.ejs %>

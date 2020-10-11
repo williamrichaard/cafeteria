@@ -1,0 +1,90 @@
+<% include ./partials/header.ejs %>
+
+<style>
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Customers Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/order" method="POST">
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email" required>
+                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                            else.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Name</label>
+                        <input type="text" name="name" class="form-control" id="exampleInputPassword1" placeholder="Name Please" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Contact Number</label>
+                        <input type="number" name="contact" class="form-control" id="exampleInputPassword1" placeholder="Contact" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputPassword1">Total Amount</label>
+                        <input type="number" name="total" class="form-control" id="exampleInputPassword1" placeholder="Total Bill" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Add To </button>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="printable" class="container mt-3">
+    <h3>Your Cart</h3>
+    <h4>Total : <span class="text text-success"><%= total %></span></h4>
+    <hr>
+    <% products.forEach(function(prc){ %>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title"><%= prc.name %></h5>
+            <p class="card-text">Price : <b class="text text-success"><%= prc.price %></b></p>
+            <a href=<%= '/remove/'+prc.id %> class="btn btn-danger">remove product</a>
+        </div>
+    </div>
+    <% }) %>
+    <br>
+    <% if(products.length > 0){  %>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+        Store Order History
+    </button>
+    <button onclick="printit('printable')" class="btn btn-success">Print Bill</button>
+    <a href="/clear" class="btn btn-warning">Clear Cart</a>
+    <% }%>
+</div>
+
+<script>
+    function printit(divName) {
+        var printContents = document.getElementById(divName).innerHTML;
+        var originalContents = document.body.innerHTML;
+
+        document.body.innerHTML = printContents;
+
+        window.print();
+
+        document.body.innerHTML = originalContents;
+    }
+</script>
+
+<% include ./partials/footer.ejs %>

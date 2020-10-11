@@ -1,0 +1,124 @@
+<% include ./partials/header.ejs %>
+  <div class="jumbotron">
+    <h1 class="display-4">Something New In The Town !</h1>
+    <small>we are part of Coffee Day Brazil, is Brazil’s favourite hangout for coffee and conversations.</small>
+    <form action="/search" method="POST">
+        <div class="input-group mt-2 flex-nowrap">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="addon-wrapping"><i class="fa fa-search"></i></span>
+            </div>
+            <input type="text" name="product" class="form-control" placeholder="Search Coffee, Burger etc." aria-label="Username"
+              aria-describedby="addon-wrapping">
+          </div>
+    </form>
+    <hr>
+    <small>Popularly known as The Cafeteria, we strive to provide the best experience to our guests.</small>
+  </div>
+  <div class="container">
+    <h4>Our Menu</h4>
+    <p>This above all: to thine own self be true,
+      And it must follow, as the night the day,
+      Thou canst not then be false to any man.</p>
+    <hr>
+    <div class="d-flex justify-content-between flex-wrap">
+      <% products.forEach(function(elem){ %>
+        <% if(elem.id !== 3 && elem.id !== 4){ %>
+          <div class="card mt-3" style="width: 18rem;">
+              <img
+                src=<%= elem.picture %>
+                class="card-img-top" alt=<%= elem.name %>>
+              <div class="card-body">
+                <h5 class="card-title"><%= elem.name %></h5>
+                <small class="card-text"><%= elem.taste %></small>
+                <br>
+                <br>
+                <h5 class="text text-success">Rs <%= elem.price %></h5>
+                <br>
+                <a href=<%= '/add/'+elem.id %> class="btn btn-success">Add To Cart</a>
+              </div>
+            </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+  <div class="container mt-5"></div>
+  <div class="container mt-5">
+    <h2>What Our Users Have To Say About Our Taste 🥘.</h2>
+    <p>We all need people who will give us feedback. That’s how we improve.</p>
+    <hr>
+    <br>
+    <div class="card-columns">
+      <div class="card">
+        <img
+          src="https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=941&q=80"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Great Cafe</h5>
+          <p class="card-text">The beauty of cafe app is that you can share your thoughts with new people.</p>
+        </div>
+      </div>
+      <div class="card p-3">
+        <blockquote class="blockquote mb-0 card-body">
+          <p>You don't experience life by drinking coffee fast. You experience life by savoring every last drop.</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              John Lennon
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card">
+        <img
+          src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+          class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Amazing Experience</h5>
+          <p class="card-text">A small café, that's love.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card bg-primary text-white text-center p-3">
+        <blockquote class="blockquote mb-0">
+          <p>The simple act of sitting here sipping this cappuccino is its own testament to my commitment to living the writer’s life..</p>
+          <footer class="blockquote-footer text-white">
+            <small>
+              Stephen King
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card text-center">
+        <div class="card-body">
+          <h5 class="card-title">Ramesh says,</h5>
+          <p class="card-text">WELCOME to the Karma Cafe. There are no menus you get served what you deserve...</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+      <div class="card">
+        <img
+          src="https://images.unsplash.com/photo-1517365830460-955ce3ccd263?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=80"
+          class="card-img-top" alt="...">
+      </div>
+      <div class="card p-3 text-right">
+        <blockquote class="blockquote mb-0">
+          <p>CAFE is like trying to cure obesity by requiring clothing manufacturers to make smaller sizes.</p>
+          <footer class="blockquote-footer">
+            <small class="text-muted">
+              Mae West
+            </small>
+          </footer>
+        </blockquote>
+      </div>
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Great Experience 🍵</h5>
+          <p class="card-text">AMazing experience, each recipe is amazing.</p>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid bg-dark text-light mt-4 pt-3 pb-3 text-center">
+    <small>copyright &copy; 2020. All Rights Reserved.</small>
+  </div>
+<% include ./partials/footer.ejs %>

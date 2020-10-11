@@ -1,0 +1,16 @@
+<% include ./partials/header.ejs %>
+<div class="container mt-4">
+    <h3>All Orders :</h3>
+    <hr>
+    <% foundOrder.reverse().forEach(function(prc){ %>
+    <div class="card mt-4">
+        <div class="card-body">
+            <h5 class="card-title text-primary"><%= prc.name %></h5>
+            <p class="card-text">Email : <%= prc.email %></p>
+            <p class="card-text">Contact Number : <%= prc.contact %></p>
+            <p class="card-text">Total : <b class="text-success"><%= prc.total %></b></p>
+        </div>
+    </div>
+    <% }) %>
+</div>
+<% include ./partials/footer.ejs %>
